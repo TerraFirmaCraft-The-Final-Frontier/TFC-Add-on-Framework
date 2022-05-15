@@ -20,20 +20,20 @@ public class DataGenerator
 {
     public static File rootFolder = Launch.minecraftHome == null ? new File(".") : Launch.minecraftHome;
 
-    public static void genForgeBlockStates(String modID, String object) throws IOException
+    public static void genForgeBlockStates(String object) throws IOException
     {
-        File foldersWood = new File(rootFolder + "/resources/" + modID + "/blockstates/wood/" + object.toLowerCase() + "/");
+        File foldersWood = new File(rootFolder + "/resources/" + TFCAddon.MOD_ID + "/blockstates/wood/" + object.toLowerCase() + "/");
         foldersWood.mkdirs();
 
-        File foldersMetal = new File(rootFolder + "/resources/" + modID + "/blockstates/metal/" + object.toLowerCase() + "/");
+        File foldersMetal = new File(rootFolder + "/resources/" + TFCAddon.MOD_ID + "/blockstates/metal/" + object.toLowerCase() + "/");
         foldersMetal.mkdirs();
 
-        File foldersRock = new File(rootFolder + "/resources/" + modID + "/blockstates/rock/" + object.toLowerCase() + "/");
+        File foldersRock = new File(rootFolder + "/resources/" + TFCAddon.MOD_ID + "/blockstates/rock/" + object.toLowerCase() + "/");
         foldersRock.mkdirs();
 
         for (Tree wood : TFCRegistries.TREES.getValuesCollection())
         {
-            File json = new File(rootFolder + "/resources/" + modID + "/blockstates/wood/" + object.toLowerCase() + "/" + wood + ".json");
+            File json = new File(rootFolder + "/resources/" + TFCAddon.MOD_ID + "/blockstates/wood/" + object.toLowerCase() + "/" + wood + ".json");
 
             JsonWriter jsonWriter = new JsonWriter(new FileWriter(json));
             jsonWriter.setIndent("    ");
@@ -55,7 +55,7 @@ public class DataGenerator
 
         for (Metal metal : TFCRegistries.METALS.getValuesCollection())
         {
-            File json = new File(rootFolder + "/resources/" + modID + "/blockstates/metal/" + object.toLowerCase() + "/" + metal + ".json");
+            File json = new File(rootFolder + "/resources/" + TFCAddon.MOD_ID + "/blockstates/metal/" + object.toLowerCase() + "/" + metal + ".json");
 
             JsonWriter jsonWriter = new JsonWriter(new FileWriter(json));
             jsonWriter.setIndent("    ");
@@ -77,7 +77,7 @@ public class DataGenerator
 
         for (Rock rock : TFCRegistries.ROCKS.getValuesCollection())
         {
-            File json = new File(rootFolder + "/resources/" + modID + "/blockstates/rock/" + object.toLowerCase() + "/" + rock + ".json");
+            File json = new File(rootFolder + "/resources/" + TFCAddon.MOD_ID + "/blockstates/rock/" + object.toLowerCase() + "/" + rock + ".json");
 
             JsonWriter jsonWriter = new JsonWriter(new FileWriter(json));
             jsonWriter.setIndent("    ");
@@ -99,12 +99,12 @@ public class DataGenerator
     }
 
     @SuppressWarnings("ConstantConditions")
-    public static void genLangFile(String modID, String object) throws IOException
+    public static void genLangFile(String object) throws IOException
     {
-        File folders = new File(rootFolder + "/resources/" + modID + "/lang/");
+        File folders = new File(rootFolder + "/resources/" + TFCAddon.MOD_ID + "/lang/");
         folders.mkdirs();
 
-        File lang = new File(rootFolder + "/resources/" + modID + "/lang/" + "en_us.lang");
+        File lang = new File(rootFolder + "/resources/" + TFCAddon.MOD_ID + "/lang/" + "en_us.lang");
 
         BufferedWriter fileWriter = new BufferedWriter(new FileWriter(lang));
 
