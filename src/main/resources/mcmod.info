@@ -1,0 +1,12 @@
+[
+  {
+    "modid": "tfc_addon",
+    "name": "TFCAddon",
+    "description": "",
+    "version": "${version}",
+    "mcversion": "${mcversion}",
+    "url": "",
+    "authorList": [""],
+    "credits": ""
+  }
+]
