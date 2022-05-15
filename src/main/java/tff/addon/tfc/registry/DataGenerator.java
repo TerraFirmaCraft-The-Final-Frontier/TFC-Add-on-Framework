@@ -9,29 +9,31 @@ import com.google.gson.stream.JsonWriter;
 import org.apache.commons.lang3.text.WordUtils;
 import net.minecraft.launchwrapper.Launch;
 
+import net.dries007.tfc.TerraFirmaCraft;
 import net.dries007.tfc.api.registries.TFCRegistries;
 import net.dries007.tfc.api.types.Metal;
 import net.dries007.tfc.api.types.Rock;
 import net.dries007.tfc.api.types.Tree;
+import tff.addon.tfc.TFCAddon;
 
 public class DataGenerator
 {
     public static File rootFolder = Launch.minecraftHome == null ? new File(".") : Launch.minecraftHome;
 
-    public static void genForgeBlockStates(String modid) throws IOException
+    public static void genForgeBlockStates(String modID, String object) throws IOException
     {
-        File foldersWood = new File(rootFolder + "/resources/" + modid + "/blockstates/wood/thing/");
+        File foldersWood = new File(rootFolder + "/resources/" + modID + "/blockstates/wood/" + object.toLowerCase() + "/");
         foldersWood.mkdirs();
 
-        File foldersMetal = new File(rootFolder + "/resources/" + modid + "/blockstates/metal/thing/");
+        File foldersMetal = new File(rootFolder + "/resources/" + modID + "/blockstates/metal/" + object.toLowerCase() + "/");
         foldersMetal.mkdirs();
 
-        File foldersRock = new File(rootFolder + "/resources/" + modid + "/blockstates/rock/thing/");
+        File foldersRock = new File(rootFolder + "/resources/" + modID + "/blockstates/rock/" + object.toLowerCase() + "/");
         foldersRock.mkdirs();
 
         for (Tree wood : TFCRegistries.TREES.getValuesCollection())
         {
-            File json = new File(rootFolder + "/resources/" + modid + "/blockstates/wood/thing/" + wood + ".json");
+            File json = new File(rootFolder + "/resources/" + modID + "/blockstates/wood/" + object.toLowerCase() + "/" + wood + ".json");
 
             JsonWriter jsonWriter = new JsonWriter(new FileWriter(json));
             jsonWriter.setIndent("    ");
@@ -39,9 +41,9 @@ public class DataGenerator
             jsonWriter.beginObject();
             jsonWriter.name("forge_marker").value(1);
             jsonWriter.name("defaults").beginObject();
-            jsonWriter.name("model").value("tfc_addon:block_model");
+            jsonWriter.name("model").value(TFCAddon.MOD_ID + ":block_model");
             jsonWriter.name("textures").beginObject();
-            jsonWriter.name("all").value("tfc:blocks/wood/planks/" + wood);
+            jsonWriter.name("all").value(TerraFirmaCraft.MOD_ID + ":blocks/wood/planks/" + wood);
             jsonWriter.endObject();
             jsonWriter.endObject();
             jsonWriter.name("variants").beginObject();
@@ -53,7 +55,7 @@ public class DataGenerator
 
         for (Metal metal : TFCRegistries.METALS.getValuesCollection())
         {
-            File json = new File(rootFolder + "/resources/" + modid + "/blockstates/metal/thing/" + metal + ".json");
+            File json = new File(rootFolder + "/resources/" + modID + "/blockstates/metal/" + object.toLowerCase() + "/" + metal + ".json");
 
             JsonWriter jsonWriter = new JsonWriter(new FileWriter(json));
             jsonWriter.setIndent("    ");
@@ -61,9 +63,9 @@ public class DataGenerator
             jsonWriter.beginObject();
             jsonWriter.name("forge_marker").value(1);
             jsonWriter.name("defaults").beginObject();
-            jsonWriter.name("model").value("tfc_addon:block_model");
+            jsonWriter.name("model").value(TFCAddon.MOD_ID + ":block_model");
             jsonWriter.name("textures").beginObject();
-            jsonWriter.name("all").value("tfc:blocks/metal/" + metal);
+            jsonWriter.name("all").value(TerraFirmaCraft.MOD_ID + ":blocks/metal/" + metal);
             jsonWriter.endObject();
             jsonWriter.endObject();
             jsonWriter.name("variants").beginObject();
@@ -75,7 +77,7 @@ public class DataGenerator
 
         for (Rock rock : TFCRegistries.ROCKS.getValuesCollection())
         {
-            File json = new File(rootFolder + "/resources/" + modid + "/blockstates/rock/thing/" + rock + ".json");
+            File json = new File(rootFolder + "/resources/" + modID + "/blockstates/rock/" + object.toLowerCase() + "/" + rock + ".json");
 
             JsonWriter jsonWriter = new JsonWriter(new FileWriter(json));
             jsonWriter.setIndent("    ");
@@ -83,9 +85,9 @@ public class DataGenerator
             jsonWriter.beginObject();
             jsonWriter.name("forge_marker").value(1);
             jsonWriter.name("defaults").beginObject();
-            jsonWriter.name("model").value("tfc_addon:block_model");
+            jsonWriter.name("model").value(TFCAddon.MOD_ID + ":block_model");
             jsonWriter.name("textures").beginObject();
-            jsonWriter.name("all").value("tfc:blocks/stonetypes/raw/" + rock);
+            jsonWriter.name("all").value(TerraFirmaCraft.MOD_ID + ":blocks/stonetypes/raw/" + rock);
             jsonWriter.endObject();
             jsonWriter.endObject();
             jsonWriter.name("variants").beginObject();
@@ -97,41 +99,41 @@ public class DataGenerator
     }
 
     @SuppressWarnings("ConstantConditions")
-    public static void genLangFile(String modid) throws IOException
+    public static void genLangFile(String modID, String object) throws IOException
     {
-        File folders = new File(rootFolder + "/resources/" + modid + "/lang/");
+        File folders = new File(rootFolder + "/resources/" + modID + "/lang/");
         folders.mkdirs();
 
-        File lang = new File(rootFolder + "/resources/" + modid + "/lang/" + "en_us.lang");
+        File lang = new File(rootFolder + "/resources/" + modID + "/lang/" + "en_us.lang");
 
         BufferedWriter fileWriter = new BufferedWriter(new FileWriter(lang));
 
-        fileWriter.write("# WOODEN THINGS");
+        fileWriter.write("# " + object + " (Wood)");
         for (Tree wood : TFCRegistries.TREES.getValuesCollection())
         {
             String woodKey = WordUtils.capitalize(wood.getRegistryName().getPath().replace("_", " "));
             fileWriter.newLine();
-            fileWriter.write("tile.tfc_addon.wood.thing." + wood + ".name=" + woodKey + " Thing");
+            fileWriter.write("tile." + TFCAddon.MOD_ID + ".wood." + object.toLowerCase() + "." + wood + ".name=" + woodKey + " " + object);
         }
 
         fileWriter.newLine();
 
-        fileWriter.write("# METAL THINGS");
+        fileWriter.write("# " + object + " (Metal)");
         for (Metal metal : TFCRegistries.METALS.getValuesCollection())
         {
             String metalKey = WordUtils.capitalize(metal.getRegistryName().getPath().replace("_", " "));
             fileWriter.newLine();
-            fileWriter.write("tile.tfc_addon.metal.thing." + metal + ".name=" + metalKey + " Thing");
+            fileWriter.write("tile." + TFCAddon.MOD_ID + ".metal." + object.toLowerCase() + "." + metal + ".name=" + metalKey + " " + object);
         }
 
         fileWriter.newLine();
 
-        fileWriter.write("# STONE THINGS");
+        fileWriter.write("# " + object + " (Stone)");
         for (Rock rock : TFCRegistries.ROCKS.getValuesCollection())
         {
             String metalKey = WordUtils.capitalize(rock.getRegistryName().getPath().replace("_", " "));
             fileWriter.newLine();
-            fileWriter.write("tile.tfc_addon.rock.thing." + rock + ".name=" + metalKey + " Thing");
+            fileWriter.write("tile." + TFCAddon.MOD_ID + ".rock." + object.toLowerCase() + "." + metalKey + " " + object);
         }
 
         fileWriter.close();

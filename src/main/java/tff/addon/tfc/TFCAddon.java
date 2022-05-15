@@ -28,10 +28,10 @@ public class TFCAddon
     {
         if (FMLCommonHandler.instance().getSide() == Side.CLIENT)
         {
-            DataGenerator.genForgeBlockStates(MOD_ID);
+            DataGenerator.genForgeBlockStates(MOD_ID, "Thing");
             FMLClientHandler.instance().refreshResources(VanillaResourceType.MODELS);
 
-            DataGenerator.genLangFile(MOD_ID);
+            DataGenerator.genLangFile(MOD_ID, "Thing");
             FMLClientHandler.instance().refreshResources(VanillaResourceType.LANGUAGES);
         }
     }
