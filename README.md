@@ -1,6 +1,6 @@
 # TFC Add-on Framework
 
-A mod framework to streamline TFC add-on development with cross-add-on compatibility through dynamically generated assets.
+A mod framework to streamline TFC add-on development with cross-add-on compatibility through dynamically generated assets. To be used as a template for TFC add-ons.
 
 Currently supports the dynamic registration of wooden, metal and rock objects, blockstates and language files, abiding by the TFC registry.
 
