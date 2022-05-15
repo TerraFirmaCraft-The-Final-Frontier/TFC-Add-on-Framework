@@ -17,8 +17,8 @@ public final class ItemRegistry
     @SubscribeEvent
     public static void registerItems(RegistryEvent.Register<Item> event)
     {
-        IForgeRegistry<Item> r = event.getRegistry();
-        BlockRegistry.getAllNormalItemBlocks().forEach(x -> registerItemBlock(r, x));
+        IForgeRegistry<Item> itemRegistry = event.getRegistry();
+        BlockRegistry.getAllNormalItemBlocks().forEach(x -> registerItemBlock(itemRegistry, x));
     }
 
     @SuppressWarnings("ConstantConditions")

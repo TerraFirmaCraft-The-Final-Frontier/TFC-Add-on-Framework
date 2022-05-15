@@ -22,18 +22,18 @@ public class DataGenerator
 
     public static void genForgeBlockStates(String object) throws IOException
     {
-        File foldersWood = new File(rootFolder + "/resources/" + TFCAddon.MOD_ID + "/blockstates/wood/" + object.toLowerCase() + "/");
+        File foldersWood = new File(rootFolder + "/resources/" + TFCAddon.MOD_ID + "/blockstates/wood/" + object.replace(" ", "_").toLowerCase() + "/");
         foldersWood.mkdirs();
 
-        File foldersMetal = new File(rootFolder + "/resources/" + TFCAddon.MOD_ID + "/blockstates/metal/" + object.toLowerCase() + "/");
+        File foldersMetal = new File(rootFolder + "/resources/" + TFCAddon.MOD_ID + "/blockstates/metal/" + object.replace(" ", "_").toLowerCase() + "/");
         foldersMetal.mkdirs();
 
-        File foldersRock = new File(rootFolder + "/resources/" + TFCAddon.MOD_ID + "/blockstates/rock/" + object.toLowerCase() + "/");
+        File foldersRock = new File(rootFolder + "/resources/" + TFCAddon.MOD_ID + "/blockstates/rock/" + object.replace(" ", "_").toLowerCase() + "/");
         foldersRock.mkdirs();
 
         for (Tree wood : TFCRegistries.TREES.getValuesCollection())
         {
-            File json = new File(rootFolder + "/resources/" + TFCAddon.MOD_ID + "/blockstates/wood/" + object.toLowerCase() + "/" + wood + ".json");
+            File json = new File(rootFolder + "/resources/" + TFCAddon.MOD_ID + "/blockstates/wood/" + object.replace(" ", "_").toLowerCase() + "/" + wood + ".json");
 
             JsonWriter jsonWriter = new JsonWriter(new FileWriter(json));
             jsonWriter.setIndent("    ");
@@ -55,7 +55,7 @@ public class DataGenerator
 
         for (Metal metal : TFCRegistries.METALS.getValuesCollection())
         {
-            File json = new File(rootFolder + "/resources/" + TFCAddon.MOD_ID + "/blockstates/metal/" + object.toLowerCase() + "/" + metal + ".json");
+            File json = new File(rootFolder + "/resources/" + TFCAddon.MOD_ID + "/blockstates/metal/" + object.replace(" ", "_").toLowerCase() + "/" + metal + ".json");
 
             JsonWriter jsonWriter = new JsonWriter(new FileWriter(json));
             jsonWriter.setIndent("    ");
@@ -77,7 +77,7 @@ public class DataGenerator
 
         for (Rock rock : TFCRegistries.ROCKS.getValuesCollection())
         {
-            File json = new File(rootFolder + "/resources/" + TFCAddon.MOD_ID + "/blockstates/rock/" + object.toLowerCase() + "/" + rock + ".json");
+            File json = new File(rootFolder + "/resources/" + TFCAddon.MOD_ID + "/blockstates/rock/" + object.replace(" ", "_").toLowerCase() + "/" + rock + ".json");
 
             JsonWriter jsonWriter = new JsonWriter(new FileWriter(json));
             jsonWriter.setIndent("    ");
